@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container stack">
+  <h2>🧩 {{ q.title }}</h2>
+  <p class="muted">Level: {{ q.level }} • Role: {{ q.role }} • Topic: {{ q.topic }} • {{ q.company }}</p>
+  <div class="section">{{ q.body }}</div>
+
+  <form method="POST" class="stack">
+    {% if q.type == 'mcq' %}
+      <label><input type="radio" name="answer" value="A"> A. {{ q.option_a }}</label>
+      <label><input type="radio" name="answer" value="B"> B. {{ q.option_b }}</label>
+      <label><input type="radio" name="answer" value="C"> C. {{ q.option_c }}</label>
+      <label><input type="radio" name="answer" value="D"> D. {{ q.option_d }}</label>
+    {% else %}
+      <input name="answer" placeholder="Type your answer...">
+    {% endif %}
+    <button class="btn btn-cta" type="submit">Submit</button>
+  </form>
+
+  {% if explanation_shown %}
+    <div class="section">
+      <div style="font-weight:900; margin-bottom:6px;">{{ '✅ Correct' if correct else '❌ Not Correct' }}</div>
+      <div><strong>Explanation:</strong> {{ q.explanation }}</div>
+      {% if q.type == 'short' %}
+        <div class="muted" style="margin-top:6px;">Expected: {{ q.answer }} {{ '• Keyword: ' ~ q.keyword if q.keyword else '' }}</div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
+

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container stack">
+  <h2>📈 Dashboard</h2>
+  <p>Attempts: <b>{{ total }}</b> • Correct: <b>{{ correct }}</b> • Accuracy: <b>{{ accuracy }}%</b></p>
+  <div class="stack">
+    {% for a in recent %}
+      <div class="section">
+        <div style="font-weight:800;">Q#{{ a.question_id }} — {{ '✅' if a.is_correct else '❌' }}</div>
+        <div class="muted">Submitted: {{ a.submitted }}</div>
+        <div class="muted">When: {{ a.created_at }}</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

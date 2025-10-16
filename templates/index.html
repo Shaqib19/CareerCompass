@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+  <img src="{{ url_for('static', filename='images/growth.jpg') }}" alt="Hero image">
+  <div class="hero-content">
+    <h1>Practice coding interviews by role and level</h1>
+    <p>Beginner → Expert tracks with instant explanations and a growing bank of role‑based questions.</p>
+    <div class="cta-row">
+      <a class="btn btn-cta" href="{{ url_for('practice_level', level='Beginner') }}">Start Beginner</a>
+      <a class="btn btn-alt" href="{{ url_for('questions') }}">Browse All</a>
+    </div>
+  </div>
+</section>
+
+<div class="container stack">
+  <section class="section">
+    <h3>🔎 Quick search</h3>
+    <form action="{{ url_for('questions') }}" method="get">
+      <p>
+        <input name="q" placeholder="Search (e.g., arrays, SQL, HTTP)">
+        <select name="role">
+          <option value="">Role</option>
+          <option>SDE</option><option>Backend</option><option>Data Analyst</option>
+        </select>
+        <select name="topic">
+          <option value="">Topic</option>
+          <option>Arrays</option><option>Two Pointers</option><option>SQL</option><option>HTTP</option><option>Stacks</option>
+        </select>
+        <select name="level"><option value="">Level</option><option>Beginner</option><option>Intermediate</option><option>Expert</option></select>
+        <select name="company"><option value="">Company</option><option>General</option></select>
+        <button class="btn btn-alt">Go</button>
+      </p>
+    </form>
+  </section>
+
+  <section class="cards">
+    <article class="card">
+      <img src="{{ url_for('static', filename='images/image-2.jpg') }}" alt="Design workspace">
+      <div class="card-body">
+        <h4>Hands‑on practice</h4>
+        <p class="muted">Short, focused questions with instant feedback.</p>
+      </div>
+    </article>
+    <article class="card">
+      <img src="{{ url_for('static', filename='images/image-1.jpg') }}" alt="Coding in progress">
+      <div class="card-body">
+        <h4>Role‑based tracks</h4>
+        <p class="muted">SDE, Backend, and Data Analyst filters to stay on track.</p>
+      </div>
+    </article>
+    <article class="card">
+      <img src="{{ url_for('static', filename='images/image-3.jpg') }}" alt="Code data">
+      <div class="card-body">
+        <h4>Core concepts</h4>
+        <p class="muted">Arrays, SQL, HTTP, stacks, and more essentials.</p>
+      </div>
+    </article>
+  </section>
+</div>
+
+{% endblock %}
